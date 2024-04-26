@@ -2,4 +2,4 @@
 
 By running this program, users can quickly obtain the current time and a reference point in the past, specifically 5 days earlier, represented in seconds since the UNIX epoch (January 1, 1970, 00:00:00 UTC). This functionality can be useful in various applications requiring time-based calculations or timestamp logging.
 
-made for use loadrunner, very useful code snippet.
+made for use in loadrunner, very useful code snippet.
