@@ -8,3 +8,9 @@
     lr_output_message("Current Time (Epoch): %ld", currentTime);
     // Print time 5 days before in epoch format
     lr_output_message("5 Days Before (Epoch): %ld", fiveDaysBefore);
+
+// Format the unique name using epoch times
+    sprintf(unique_name, "%ld_%ld_%ld", currentTime, fiveDaysBefore, fiveDaysBefore);
+    
+    // Print the unique name
+    lr_output_message("Unique Name: %s", unique_name);
