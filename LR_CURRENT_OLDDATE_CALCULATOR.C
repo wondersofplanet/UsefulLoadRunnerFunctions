@@ -1,13 +1,25 @@
 #include "time.h"
 #include "stdio.h"
-/// Get current time
+
+    int numberOfDays = 5;
+
+    // Get current time
     time_t currentTime = time(NULL);
-    // Subtract 5 days (5 * 24 * 60 * 60 seconds)
-    time_t fiveDaysBefore = currentTime - (5 * 24 * 60 * 60);
+    
+    // Subtract numberOfDays days (numberOfDays * 24 * 60 * 60 seconds)
+    time_t daysBefore = numberOfDays * 24 * 60 * 60;
+    time_t timeBefore = currentTime - daysBefore;
+
     // Print current time in epoch format
     lr_output_message("Current Time (Epoch): %ld", currentTime);
-    // Print time 5 days before in epoch format
-    lr_output_message("5 Days Before (Epoch): %ld", fiveDaysBefore);
+    // Convert current time to human-readable format
+    lr_output_message("Current Time (Human Readable): %s", asctime(localtime(&currentTime)));
+    
+    // Print time numberOfDays before in epoch format
+    lr_output_message("%d Days Before (Epoch): %ld", numberOfDays, timeBefore);
+    // Convert timeBefore to human-readable format
+    lr_output_message("%d Days Before (Human Readable): %s", numberOfDays, asctime(localtime(&timeBefore)));
+
 
 // Format the unique name using epoch times
     sprintf(unique_name, "%ld_%ld_%ld", currentTime, fiveDaysBefore, fiveDaysBefore);
