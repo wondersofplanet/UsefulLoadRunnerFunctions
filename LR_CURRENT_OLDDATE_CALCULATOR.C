@@ -1,7 +1,11 @@
+
 #include "time.h"
 #include "stdio.h"
+#include "lrs.h"
+
 
     int numberOfDays = 5;
+    char unique_name[100]; // Assuming a maximum length for the unique name
 
     // Get current time
     time_t currentTime = time(NULL);
@@ -20,9 +24,10 @@
     // Convert timeBefore to human-readable format
     lr_output_message("%d Days Before (Human Readable): %s", numberOfDays, asctime(localtime(&timeBefore)));
 
-
-// Format the unique name using epoch times
-    sprintf(unique_name, "%ld_%ld_%ld", currentTime, timeBefore, timeBefore);
+    // Format the unique name using epoch times
+    sprintf(unique_name, "%ld_%ld_%ld", (long)currentTime, (long)timeBefore, (long)timeBefore);
     
     // Print the unique name
     lr_output_message("Unique Name: %s", unique_name);
+
+
