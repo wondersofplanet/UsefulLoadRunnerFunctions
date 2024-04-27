@@ -22,7 +22,7 @@
 
 
 // Format the unique name using epoch times
-    sprintf(unique_name, "%ld_%ld_%ld", currentTime, fiveDaysBefore, fiveDaysBefore);
+    sprintf(unique_name, "%ld_%ld_%ld", currentTime, timeBefore, timeBefore);
     
     // Print the unique name
     lr_output_message("Unique Name: %s", unique_name);
