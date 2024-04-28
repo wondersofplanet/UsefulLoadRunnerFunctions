@@ -1,0 +1,32 @@
+#include "time.h"
+
+long convertToEpochTime(char* humanTime) {
+    struct tm tm_time = {0};
+    time_t epoch_time;
+
+    // Parse the human-readable time string
+    sscanf(humanTime, "%d-%d-%d %d:%d:%d", &tm_time.tm_year, &tm_time.tm_mon, &tm_time.tm_mday,
+                                            &tm_time.tm_hour, &tm_time.tm_min, &tm_time.tm_sec);
+    tm_time.tm_year -= 1900; // Adjust year
+    tm_time.tm_mon -= 1; // Adjust month
+
+    // Convert to epoch time
+    epoch_time = mktime(&tm_time);
+
+    return (long)epoch_time;
+}
+
+Action()
+{
+    // Define your human-readable time
+    char* humanReadableTime = "2024-04-28 12:00:00";
+
+    // Call the method to convert human-readable time to epoch time
+    long epochTime = convertToEpochTime(humanReadableTime);
+
+    // Output the results
+    lr_output_message("Human-readable time: %s", humanReadableTime);
+    lr_output_message("Epoch time: %ld", epochTime);
+
+    return 0;
+}
