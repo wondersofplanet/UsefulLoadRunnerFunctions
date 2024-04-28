@@ -1,0 +1,23 @@
+#include "lrun.h"
+
+Action()
+{
+    time_t currentTime;
+    struct tm* localTime;
+    char formattedTime[20];
+
+    // Get current time
+    time(&currentTime);
+    localTime = localtime(&currentTime);
+
+    // Format the current time
+    strftime(formattedTime, sizeof(formattedTime), "%Y-%m-%d %H:%M:%S", localTime);
+
+    // Save formatted time to a parameter
+    lr_save_string(formattedTime, "current_time_param");
+
+    // Output the current time to LoadRunner log
+    lr_output_message("Current time: %s", formattedTime);
+
+    return 0;
+}
