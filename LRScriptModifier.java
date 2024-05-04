@@ -119,20 +119,20 @@ public class FileModifier {
                                 + "\t // -----------------"+ "\n"+
                                 "\t //------------------------------------"+ "\n"+"\n"+
                               //lr_start_transaction("ENTERSTORE");
-                              "\tlr_start_transaction(\"" + appName + "_00" + "_" + "Launch" + "\");\n\n" +
-                              "\tlr_output_message(\"" + appName + "_00" + "_" + "Launch" + " started -> trans_time:%f : %s\", trans_time, lr_eval_string(\"Vuserid: {Vuserid}, Iteration: {" + "P_Iteration_number" + "},End_time: {" + "date_time" + "\"));\n"+"\n"+"\n"+"\n"+
+                              "\tlr_start_transaction(\"" + appName + "_T_00" + "_" + "Launch" + "\");\n\n" +
+                              "\tlr_output_message(\"" + appName + "_T_00" + "_" + "Launch" + " started -> trans_time:%f : %s\", trans_time, lr_eval_string(\"Vuserid: {Vuserid}, Iteration: {" + "P_Iteration_number" + "},End_time: {" + "date_time" + "\"));\n"+"\n"+"\n"+"\n"+
                                "\t //------------------------------------"+ "\n"+"\n"+"\n"+
                               "\tHttpResponseCodeAsInteger = web_get_int_property(HTTP_INFO_RETURN_CODE);\n\n" +
-                "\ttrans_time=lr_get_transaction_duration(\"" + appName + "_" + "00" + "_" + "Launch"+ "\");\n\n" +
+                "\ttrans_time=lr_get_transaction_duration(\"" + appName + "_T_" + "00" + "_" + "Launch"+ "\");\n\n" +
                 "\tif((atoi(lr_eval_string(\"{textchevkcount_Count_Found_In_Response_Launch}\")) > 0)&&(HttpResponseCodeAsInteger == 200)) {\n" +
                 "\t//success -- \n" +
-                "\tlr_end_transaction(\"" + appName + "_" + "00" + "_" + "Launch" + "\",LR_PASS); \n" +
-                "\tlr_output_message(\"" + appName + "_00" + "_" + "Launch" + " Ended_Successfully -> trans_time:%f : %s\", trans_time, lr_eval_string(\"Vuserid: {Vuserid}, Iteration: {" + "P_Iteration_number" + "},End_time: {" + "date_time" + "\"));\n"+
+                "\tlr_end_transaction(\"" + appName + "_T_" + "00" + "_" + "Launch" + "\",LR_PASS); \n" +
+                "\tlr_output_message(\"" + appName + "_T_00" + "_" + "Launch" + " Ended_Successfully -> trans_time:%f : %s\", trans_time, lr_eval_string(\"Vuserid: {Vuserid}, Iteration: {" + "P_Iteration_number" + "},End_time: {" + "date_time" + "\"));\n"+
                 
                 "\t}\n" +
                 "\telse {\n\t//not success -- \n" +
-                "\tlr_end_transaction(\"" + appName + "_" + "00" + "_" + "Launch" + "\",LR_FAIL); \n" +
-                "\tlr_output_message(\"" + appName + "_00" + "_" + "Launch" + " Ended_Fail -> trans_time:%f : %s\", trans_time, lr_eval_string(\"Vuserid: {Vuserid}, Iteration: {" + "P_Iteration_number" + "},End_time: {" + "date_time" + "\"));\n"+"\n"+
+                "\tlr_end_transaction(\"" + appName + "_T_" + "00" + "_" + "Launch" + "\",LR_FAIL); \n" +
+                "\tlr_output_message(\"" + appName + "_T__00" + "_" + "Launch" + " Ended_Fail -> trans_time:%f : %s\", trans_time, lr_eval_string(\"Vuserid: {Vuserid}, Iteration: {" + "P_Iteration_number" + "},End_time: {" + "date_time" + "\"));\n"+"\n"+
                 "\t}\n" +
                 "\tlr_think_time(TT);\n"
                 + "\n"
@@ -166,15 +166,15 @@ public class FileModifier {
                     String counterString = String.format("%02d", endTransactionCounter);
                     line = "\t//lr_end_transaction(\"" + stepName + "\",LR_AUTO);\n" +
                            "\tHttpResponseCodeAsInteger = web_get_int_property(HTTP_INFO_RETURN_CODE);\n\n" +
-                           "\ttrans_time=lr_get_transaction_duration(\"" + appName + "_" + counterString + "_" + stepName + "\");\n\n" +
+                           "\ttrans_time=lr_get_transaction_duration(\"" + appName + "_" +"T_"+ counterString + "_" + stepName + "\");\n\n" +
                            "\tif((atoi(lr_eval_string(\"{textchevkcount__Count_Found_In_Response_"+stepName+"}\")) > 0)&&(HttpResponseCodeAsInteger == 200)) {\n" +
                            "\t//success -- \n" +
-                           "\tlr_end_transaction(\"" + appName + "_" + counterString + "_" + stepName + "\",LR_PASS); \n" +
-                           "\tlr_output_message(\"" + appName + "_" + counterString + "_" + stepName + " Ended_Successfully-> trans_time:%f : %s\",trans_time, lr_eval_string(\"Vuserid: {Vuserid}, Iteration: {P_Iteration_number},End_time: {date_time}\"));\n\n"+
+                           "\tlr_end_transaction(\"" + appName + "_" +"T_" +counterString + "_" + stepName + "\",LR_PASS); \n" +
+                           "\tlr_output_message(\"" + appName + "_" +"T_" +counterString + "_" + stepName + " Ended_Successfully-> trans_time:%f : %s\",trans_time, lr_eval_string(\"Vuserid: {Vuserid}, Iteration: {P_Iteration_number},End_time: {date_time}\"));\n\n"+
                            "\t}\n" +
                            "\telse {\n\t//not success -- \n" +
-                           "\tlr_end_transaction(\"" + appName + "_" + counterString + "_" + stepName + "\",LR_FAIL); \n" +
-                           "\tlr_output_message(\"" + appName + "_" + counterString + "_" + stepName + " Ended_Fail -> trans_time:%f : %s\",trans_time, lr_eval_string(\"Vuserid: {Vuserid}, Iteration: {P_Iteration_number},End_time: {date_time}\"));\n\n"+
+                           "\tlr_end_transaction(\"" + appName + "_" + "T_"+counterString + "_" + stepName + "\",LR_FAIL); \n" +
+                           "\tlr_output_message(\"" + appName + "_" +"T_"+ counterString + "_" + stepName + " Ended_Fail -> trans_time:%f : %s\",trans_time, lr_eval_string(\"Vuserid: {Vuserid}, Iteration: {P_Iteration_number},End_time: {date_time}\"));\n\n"+
                            "\t}\n\n" +
                            "\tlr_think_time(TT);\n";
                     endTransactionCounter++;
@@ -184,8 +184,8 @@ public class FileModifier {
                     String counterString = String.format("%02d", startTransactionCounter);
                     line = line.replaceFirst("lr_start_transaction\\(\"" + stepName + "\"\\);",
                             "\t//lr_start_transaction(\"" + stepName + "\");\n" +
-                            "\tlr_start_transaction(\"" + appName + "_" + counterString + "_" + stepName + "\");\n" +
-                            "\tlr_output_message(\"" + appName + "_" + counterString + "_" + stepName + " Started -> trans_time:%f : %s\",trans_time, lr_eval_string(\"Vuserid: {Vuserid}, Iteration: {P_Iteration_number},End_time: {date_time}\"));");
+                            "\tlr_start_transaction(\"" + appName + "_" +"T_" +counterString + "_" + stepName + "\");\n" +
+                            "\tlr_output_message(\"" + appName + "_" +"T_"+ counterString + "_" + stepName + " Started -> trans_time:%f : %s\",trans_time, lr_eval_string(\"Vuserid: {Vuserid}, Iteration: {P_Iteration_number},End_time: {date_time}\"));");
                     startTransactionCounter++;
                 }else if (line.contains("lr_think_time")) {
                 	
