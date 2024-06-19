@@ -1,0 +1,21 @@
+#include "stdlib.h"
+#include "time.h"
+
+Action()
+{
+    int i;
+    char randomNumber[13]; // 12 digits + '\0' terminator
+    
+    srand(time(NULL)); // Initialize random seed based on current time
+    
+    // Generate 12 random digits
+    for (i = 0; i < 12; i++) {
+        randomNumber[i] = '0' + (rand() % 10); // ASCII '0' to '9'
+    }
+    
+    randomNumber[12] = '\0'; // Null-terminate the string
+    
+    lr_output_message("Random 12-digit number: %s", randomNumber);
+    
+    return 0;
+}
