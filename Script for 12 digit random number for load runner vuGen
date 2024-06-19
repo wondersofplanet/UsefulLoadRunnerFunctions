@@ -6,7 +6,7 @@ Action()
     int i;
     char randomNumber[13]; // 12 digits + '\0' terminator
     
-    srand(time(NULL)); // Initialize random seed based on current time
+    srand(time(NULL)); // Initialize  random seed based on current time
     
     // Generate 12 random digits
     for (i = 0; i < 12; i++) {
