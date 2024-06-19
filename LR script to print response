@@ -1,0 +1,42 @@
+Action()
+{
+    // Register to search for "500 Internal Server Error" in the response
+    web_reg_find("Text=500 Internal Server Error", "SaveCount=Error500Count", LAST);
+    // Register to search for "404 Not Found" in the response
+    web_reg_find("Text=404 Not Found", "SaveCount=Error404Count", LAST);
+
+    // Capture the raw response
+    web_reg_save_param("RawResponse", "LB=", "RB=", "Search=Body", LAST);
+
+    lr_start_transaction("TransactionName");
+
+    web_url("RequestName",
+        "URL=http://example.com",
+        "TargetFrame=",
+        "Resource=0",
+        "RecContentType=text/html",
+        "Referer=",
+        "Snapshot=t1.inf",
+        "Mode=HTML",
+        LAST);
+
+    lr_end_transaction("TransactionName", LR_AUTO);
+
+    // Check if a 500 Internal Server Error occurred
+    if (atoi(lr_eval_string("{Error500Count}")) > 0) {
+        lr_error_message("500 Internal Server Error occurred.");
+        // Log request and response details
+        lr_output_message("Request URL: http://example.com");
+        lr_output_message("Raw Response: %s", lr_eval_string("{RawResponse}"));
+    }
+
+    // Check if a 404 Not Found error occurred
+    if (atoi(lr_eval_string("{Error404Count}")) > 0) {
+        lr_error_message("404 Not Found error occurred.");
+        // Log request and response details
+        lr_output_message("Request URL: http://example.com");
+        lr_output_message("Raw Response: %s", lr_eval_string("{RawResponse}"));
+    }
+
+    return 0;
+}
