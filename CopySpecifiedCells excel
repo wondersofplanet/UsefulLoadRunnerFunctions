@@ -1,0 +1,25 @@
+Sub CopySpecifiedCells()
+    Dim ws1 As Worksheet
+    Dim ws2 As Worksheet
+    Dim cell As Range
+    Dim i As Integer
+    
+    ' Set the worksheets
+    Set ws1 = ThisWorkbook.Sheets("Sheet1")
+    Set ws2 = ThisWorkbook.Sheets("Sheet2")
+    
+    ' Initialize the starting row for pasting in Sheet2
+    Dim pasteRow As Integer
+    pasteRow = 10
+    
+    ' Loop through the specified cells and copy them to Sheet2
+    For i = 10 To 90 Step 2
+        Set cell = ws1.Range("A" & i)
+        cell.Copy
+        ws2.Range("A" & pasteRow).PasteSpecial Paste:=xlPasteAll
+        pasteRow = pasteRow + 2
+    Next i
+    
+    ' Clear the clipboard
+    Application.CutCopyMode = False
+End Sub
