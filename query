@@ -1,0 +1,11 @@
+SELECT 
+    pzInsKey AS RuleKey,
+    pyRuleName AS RuleName,
+    pyRuleSet AS RuleSetName,
+    pyRuleSetVersion AS RuleSetVersion,
+    pyClassName AS ClassName,
+    pyRuleType AS RuleType
+FROM 
+    pr4_rule
+ORDER BY 
+    pyRuleSet, pyRuleSetVersion, pyClassName, pyRuleName;
